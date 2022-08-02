@@ -1,0 +1,6 @@
+music apis:
+https://rapidapi.com/search/spotify
+
+https://rapidapi.com/search/music
+
+https://rapidapi.com/volodimir.kudriachenko/api/iTunes
