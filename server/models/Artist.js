@@ -44,7 +44,7 @@ const artistSchema = new Schema(
 //   return bcrypt.compare(password, this.password);
 // };
 
-artistSchema.virtual('friendCount').get(function() {
+artistSchema.virtual('fanCount').get(function() {
   return this.fans.length;
 });
 
