@@ -80,6 +80,18 @@ export const ADD_FRIEND = gql`
   }
 `;
 
+export const ADD_FAN = gql`
+  mutation addFan($artistId: ID!, $userId: ID!) {
+    addFan(artistId: $artistId, userId: $userId) {
+      _id
+      fans {
+        _id
+        username
+      }
+    }
+  }
+`;
+
 export const REMOVE_FRIEND = gql`
   mutation removeFriend($id: ID!) {
     removeFriend(id: $id) {
