@@ -1,5 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Thought } = require('../models');
+const { User, Artist } = require('../models');
+// const {  } = require('../models')
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -10,10 +11,10 @@ const resolvers = {
           .select('-__v -password')
           .populate('thoughts')
           .populate('friends');
-    
+
         return userData;
       }
-    
+
       throw new AuthenticationError('Not logged in');
     },
     users: async () => {
@@ -27,6 +28,11 @@ const resolvers = {
         .select('-__v -password')
         .populate('friends')
         .populate('thoughts');
+    },
+    artists: async () => {
+      return Artist.find()
+        // .select('-__v')
+        // .populate('fans')
     },
     thoughts: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -43,6 +49,12 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+    addArtist: async (parent, args) => {
+      const artist = await Artist.create(args);
+      const token = signToken(artist);
+
+      return { token, artist };
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });

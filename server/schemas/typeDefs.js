@@ -10,6 +10,14 @@ const typeDefs = gql`
     friends: [User]
   }
 
+  type Artist {
+    _id: ID
+    name: String
+    fanCount: Int
+    thoughts: [Thought]
+    fans: [User]
+  }
+
   type Thought {
     _id: ID
     thoughtText: String
@@ -37,6 +45,8 @@ const typeDefs = gql`
     user(username: String!): User
     thoughts(username: String): [Thought]
     thought(_id: ID!): Thought
+    artists: [Artist]
+    artist(name: String!): Artist
   }
 
   type Mutation {
@@ -45,6 +55,8 @@ const typeDefs = gql`
     addThought(thoughtText: String!): Thought
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User
+    addArtist(name: String!): Artist
+
   }
 `;
 

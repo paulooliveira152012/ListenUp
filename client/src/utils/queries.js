@@ -37,13 +37,13 @@ export const QUERY_THOUGHT = gql`
 `;
 
 export const QUERY_USER = gql`
-  query usuer($username: String!) {
+  query user($username: String!) {
     user(username: $username) {
       _id
       username
       email
       friendCount
-      friends{
+      friends {
         _id
         username
       }
