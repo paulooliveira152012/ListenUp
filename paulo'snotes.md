@@ -80,3 +80,13 @@ just create own css
 =================================================
  
 # Consider integrating the Stripe payment platform. Even if you don’t create an e-commerce application, you could set up your site to accept charitable donations.
+
+
+
+
+
+Watchlist application that allows users to create an account, use multiple APIs to search for music, and save them to their personalized profile.
+
+
+
+Name - ListenUp
