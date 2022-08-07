@@ -117,21 +117,21 @@ const resolvers = {
       }
 
       throw new AuthenticationError('You need to be logged in!');
+    },
+    addFan: async (parent, { artistId, userId }, context) => {
+      if (context.artist) {
+        const updatedArtist = await Artist.findOneAndUpdate(
+          { _id: context.artist._id },
+          { $addToSet: { fans: userId } },
+          { new: true }
+        ).populate('fans');
+
+        return updatedArtist;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
     }
   },
-  // addFan: async (parent, { fanId }, context) => {
-  //   if (context.artist) {
-  //     const updatedArtist = await Artist.findOneAndUpdate(
-  //       { _id: context.user._id },
-  //       { $addToSet: { fans: fanId } },
-  //       { new: true }
-  //     ).populate('fans');
-
-  //     return updatedArtist;
-  //   }
-
-  //   throw new AuthenticationError('You need to be logged in!');
-  // }
 };
 
 module.exports = resolvers;

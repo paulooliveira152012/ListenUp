@@ -56,7 +56,7 @@ const typeDefs = gql`
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User
     addArtist(name: String!): Artist
-    addFan(artistId: ID!, userId: ID!): Artist
+    addFan(name: String!, fanId: ID!): Artist
   }
 `;
 
