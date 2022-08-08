@@ -59,23 +59,52 @@ const ThoughtForm = () => {
 
   return (
     <div>
-      <p
-        className={`m-0 ${characterCount === 280 || error ? 'text-error' : ''}`}
-      >
-        Character Count: {characterCount}/280
-        {error && <span className="ml-2">Something went wrong...</span>}
-      </p>
+      
       <form
-        className="flex-row justify-center justify-space-between-md align-stretch"
-        onSubmit={handleFormSubmit}
+        className="flex-column justify-center justify-space-between-md align-stretch"
       >
+        <div className="dropdown">
+          <p className='m-0'>
+            Choose an Artist
+          </p>
+          <select className="btn col-12 col-md-4">
+            <option>Hannah Montana</option>
+            <option>jermey</option>
+          </select>
+        </div>
+        <p className='m-0'>
+            ... Or Add Your Own
+        </p>
+        <div className='newArtistDiv flex-row justify-center justify-space-between-md align-stretch'>
+          <input 
+            className='newArtist form-input col-12 col-md-9'
+            placeholder="Type Artist Name Here"
+            onChange={handleChange}
+          ></input>
+          <button 
+            className="btn col-12 col-md-3"
+            onClick={handleFormSubmit}
+          >
+            Add Artist
+          </button>
+        </div>
+        
+        <p
+          className={`m-0 ${characterCount === 280 || error ? 'text-error' : ''}`}
+          >
+            Character Count: {characterCount}/280
+            {error && <span className="ml-2">Something went wrong...</span>}
+          </p>
         <textarea
-          placeholder="Here's a new thought..."
+          placeholder="Tell us your opinion..."
           value={thoughtText}
           className="form-input col-12 col-md-9"
           onChange={handleChange}
         ></textarea>
-        <button className="btn col-12 col-md-3" type="submit">
+        <button 
+          className="btn col-12 col-md-3" 
+          onClick={handleFormSubmit}
+        >
           Submit
         </button>
       </form>

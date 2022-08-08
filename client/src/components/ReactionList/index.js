@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import auth from '../../utils/auth';
 
 const ReactionList = ({ reactions }) => {
   return (
@@ -12,7 +13,7 @@ const ReactionList = ({ reactions }) => {
           reactions.map(reaction => (
             <p className="pill mb-3" key={reaction._id}>
               {reaction.reactionBody} //{' '}
-              <Link to={`/profile/${reaction.username}`} style={{ fontWeight: 700 }}>
+              <Link to={auth.loggedIn() ?`/profile/${reaction.username}` : "/login"} style={{ fontWeight: 700 }}>
                 {reaction.username} on {reaction.createdAt}
               </Link>
             </p>

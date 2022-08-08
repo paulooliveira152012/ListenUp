@@ -9,8 +9,11 @@ const artistSchema = new Schema(
       unique: true,
       trim: true
     },
-    description: {
-      type: String
+    wiki: {
+      type: String,
+    },
+    description: { 
+      type: String,
     },
     thoughts: [
       {

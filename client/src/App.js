@@ -17,6 +17,8 @@ import NoMatch from './pages/NoMatch';
 import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
+import NewOpinion from './pages/NewOpinion';
+
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -58,8 +60,12 @@ function App() {
                 element={<Signup />} 
               />
               <Route 
-                path="/profile" 
+                path="/profile/:username" 
                 element={<Profile />} 
+              />
+              <Route
+                path='/new-opinion'
+                element={<NewOpinion />}
               />
               <Route 
                 path="/thought/:id" 

@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import auth from '../../utils/auth';
 
 const ThoughtList = ({ thoughts, title }) => {
   if (!thoughts.length) {
-    return <h3>No Thoughts Yet</h3>;
+    return <h3>No Opinions Yet</h3>;
   }
+
+  const loggedIn = auth.loggedIn();
 
   return (
     <div>
@@ -12,22 +15,30 @@ const ThoughtList = ({ thoughts, title }) => {
       {thoughts &&
         thoughts.map(thought => (
           <div key={thought._id} className="card mb-3">
+            <h4><Link
+                to={loggedIn ?`/profile/${thought.username}` : "/login"}
+                style={{ fontWeight: 700 }}
+                className="text-light opinion-title"
+              >
+                Opinions on ARTIST_NAME
+              </Link>
+            </h4>
             <p className="card-header">
-              <Link
-                to={`/profile/${thought.username}`}
+              <Link 
+                to={loggedIn ?`/profile/${thought.username}` : "/login"}
                 style={{ fontWeight: 700 }}
                 className="text-light"
               >
                 {thought.username}
               </Link>{' '}
-              thought on {thought.createdAt}
+              {thought.createdAt}
             </p>
             <div className="card-body">
               <Link to={`/thought/${thought._id}`}>
                 <p>{thought.thoughtText}</p>
                 <p className="mb-0">
-                  Reactions: {thought.reactionCount} || Click to{' '}
-                  {thought.reactionCount ? 'see' : 'start'} the discussion!
+                  Comments: {thought.reactionCount} · Click to {' '}  
+                  {thought.reactionCount ? 'continue' : 'start'} talking!
                 </p>
               </Link>
             </div>
