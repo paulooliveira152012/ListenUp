@@ -120,10 +120,12 @@ const resolvers = {
     },
     addFan: async (parent, { artistId, userId }, context) => {
       // if (context.artist) {
+        console.log(context.user, artistId, userId)
         const updatedArtist = await Artist.findOneAndUpdate(
-          { _id: context.user._id },
+          { _id: artistId },
           { $addToSet: { fans: context.user._id } },
           { new: true }
+          
         ).populate('fans');
 
         return updatedArtist;
