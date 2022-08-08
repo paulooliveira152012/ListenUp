@@ -12,6 +12,9 @@ const artistSchema = new Schema(
     wiki: {
       type: String,
     },
+    description: { 
+      type: String,
+    },
     thoughts: [
       {
         type: Schema.Types.ObjectId,

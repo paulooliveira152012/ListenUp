@@ -121,7 +121,7 @@ const resolvers = {
     addFan: async (parent, { artistId, userId }, context) => {
       // if (context.artist) {
         const updatedArtist = await Artist.findOneAndUpdate(
-          { _id: context.artist._id },
+          { _id: context.user._id },
           { $addToSet: { fans: context.user._id } },
           { new: true }
         ).populate('fans');
