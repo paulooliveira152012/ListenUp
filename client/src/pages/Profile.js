@@ -8,6 +8,7 @@ import FriendList from '../components/FriendList';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import { ADD_FRIEND } from '../utils/mutations';
+import capitalizeFirstLetter from '../utils/capFirstLetter';
 import Auth from '../utils/auth';
 
 const Profile = (props) => {
@@ -21,9 +22,9 @@ const Profile = (props) => {
   const user = data?.me || data?.user || {};
 
   // navigate to personal profile page if username is yours
-  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-    return <Navigate to="/profile:username" />;
-  }
+  // if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+  //   return <Navigate to="/profile:username" />;
+  // }
 
   if (loading) {
     return <div>Loading...</div>;
@@ -48,12 +49,17 @@ const Profile = (props) => {
     }
   };
 
+  console.log(Auth.getProfile().data.username, userParam)
+
   return (
     <div>
       <div className="flex-row mb-3">
         <h2 className="bg-dark text-secondary p-3 display-inline-block">
-          Viewing {userParam ? `${user.username}'s` : 'your'} profile.
+          Viewing {userParam ? `${capitalizeFirstLetter(user.username)}'s` : 'your'} profile.
         </h2>
+        
+        {Auth.getProfile().data.username === userParam ? <button
+        >Add a Post</button>: ''}
 
         {userParam && (
           <button className="btn ml-auto" onClick={handleClick}>
@@ -66,19 +72,18 @@ const Profile = (props) => {
         <div className="col-12 mb-3 col-lg-8">
           <ThoughtList
             thoughts={user.thoughts}
-            title={`${user.username}'s thoughts...`}
+            title={`${capitalizeFirstLetter(user.username)}'s thoughts...`}
           />
         </div>
 
         <div className="col-12 col-lg-3 mb-3">
           <FriendList
-            username={user.username}
+            username={capitalizeFirstLetter(user.username)}
             friendCount={user.friendCount}
             friends={user.friends}
           />
         </div>
       </div>
-      <div className="mb-3">{!userParam && <ThoughtForm />}</div>
     </div>
   );
 };

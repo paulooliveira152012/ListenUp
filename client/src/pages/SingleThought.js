@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import ReactionList from '../components/ReactionList';
 import ReactionForm from '../components/ReactionForm';
@@ -7,6 +8,9 @@ import ReactionForm from '../components/ReactionForm';
 import Auth from '../utils/auth';
 import { useQuery } from '@apollo/client';
 import { QUERY_THOUGHT } from '../utils/queries';
+import auth from '../utils/auth';
+
+
 
 const SingleThought = (props) => {
   const { id: thoughtId } = useParams();
@@ -21,9 +25,19 @@ const SingleThought = (props) => {
     return <div>Loading...</div>;
   }
 
+  const loggedIn = auth.loggedIn();
+
   return (
     <div>
       <div className="card mb-3">
+        <h4><Link
+                  to={loggedIn ?`/profile/${thought.username}` : "/login"}
+                  style={{ fontWeight: 700 }}
+                  className="text-light opinion-title"
+                >
+                  Opinions on ARTIST_NAME
+              </Link>
+          </h4>
         <p className="card-header">
           <span style={{ fontWeight: 700 }} className="text-light">
             {thought.username}

@@ -1,11 +1,11 @@
 import React from 'react';
 import ThoughtList from '../components/ThoughtList';
-import ThoughtForm from '../components/ThoughtForm';
 import FriendList from '../components/FriendList';
 
 import Auth from '../utils/auth';
 import { useQuery } from '@apollo/client';
 import { QUERY_THOUGHTS, QUERY_ME_BASIC } from '../utils/queries';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_THOUGHTS);
@@ -18,9 +18,9 @@ const Home = () => {
     <main>
       <div className="flex-row justify-space-between">
         {loggedIn && (
-          <div className="col-12 mb-3">
-            <ThoughtForm />
-          </div>
+        <div className="col-12 mb-3">
+          <Link to="/new-opinion"> <button className="btn col-12 col-md-3" type="submit"> Add Opinion</button></Link>
+        </div>
         )}
         <div className={`col-12 mb-3 ${loggedIn && 'col-lg-8'}`}>
           {loading ? (
@@ -28,7 +28,7 @@ const Home = () => {
           ) : (
             <ThoughtList
               thoughts={thoughts}
-              title="Our Opinions"
+              title="Our Opinions "
             />
           )}
         </div>

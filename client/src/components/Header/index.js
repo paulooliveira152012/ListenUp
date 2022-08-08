@@ -3,9 +3,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Auth from '../../utils/auth';
+import capitalizeFirstLetter from '../../utils/capFirstLetter';
 
 const Header = () => {
-
+  const username = Auth.loggedIn() ? Auth.getProfile().data.username : '';
+  console.log(username)
   const logout = event => {
     event.preventDefault();
     Auth.logout();
@@ -21,7 +23,7 @@ const Header = () => {
         <nav className="text-center">
           {Auth.loggedIn() ? (
             <>
-              <Link to="/profile"> My Profile</Link>
+              <Link to={`/profile/${username}`}> {capitalizeFirstLetter(username)}'s Profile</Link>
               <a href="/" onClick={logout}>
                 Logout
               </a>

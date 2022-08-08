@@ -12,7 +12,8 @@ const typeDefs = gql`
 
   type Artist {
     _id: ID
-    name: String
+    name: String,
+    wiki: String,
     fanCount: Int
     thoughts: [Thought]
     fans: [User]

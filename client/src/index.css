@@ -26,7 +26,7 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Inconsolata', monospace;
+  font-family: 'K2D', sans-serif;
   font-weight: 400;
   line-height: 1.5;
   font-size: 20px;
@@ -40,7 +40,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Quattrocento', serif;
+  font-family: 'K2D', sans-serif;
   font-weight: 700;
   margin: 5px 0;
   line-height: 1.25;
@@ -114,7 +114,6 @@ nav a:hover {
   text-decoration: none;
   padding: 0.5rem 1.2rem;
   margin: 5px 0;
-  border-radius: var(--border-radius);
   border: none;
   color: var(--dark);
   outline: none;
@@ -149,7 +148,6 @@ nav a:hover {
   color: white;
   margin: 0;
   background-color: var(--dark);
-  background: linear-gradient(90deg, rgba(60,53,55,1) 0%, rgba(106, 93, 97, 0.4) 50%, rgba(147, 131, 136, 0) 70%);;
   padding: 0.625rem;
 }
 
@@ -163,6 +161,7 @@ nav a:hover {
 .form-input,
 .form-textarea {
   display: block;
+  font-family: 'K2D', sans-serif;
 }
 
 .form-label {
@@ -176,7 +175,6 @@ nav a:hover {
   margin: 0.2rem 0;
   font-size: 1.2rem;
   border: 2px solid var(--dark);
-  border-radius: var(--border-radius);
 }
 
 [type='radio']:checked,
@@ -204,7 +202,6 @@ nav a:hover {
   width: 18px;
   height: 18px;
   border: 2px solid var(--secondary);
-  border-radius: 100%;
   background: #fff;
 }
 [type='radio']:checked + label:after,
@@ -216,7 +213,6 @@ nav a:hover {
   position: absolute;
   top: 5px;
   left: 5px;
-  border-radius: 100%;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }

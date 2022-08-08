@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import auth from '../../utils/auth';
 
 const ThoughtList = ({ thoughts, title }) => {
   if (!thoughts.length) {
     return <h3>No Opinions Yet</h3>;
   }
+
+  const loggedIn = auth.loggedIn();
 
   return (
     <div>
@@ -13,7 +16,7 @@ const ThoughtList = ({ thoughts, title }) => {
         thoughts.map(thought => (
           <div key={thought._id} className="card mb-3">
             <h4><Link
-                to={`/profile/${thought.username}`}
+                to={loggedIn ?`/profile/${thought.username}` : "/login"}
                 style={{ fontWeight: 700 }}
                 className="text-light opinion-title"
               >
@@ -21,8 +24,8 @@ const ThoughtList = ({ thoughts, title }) => {
               </Link>
             </h4>
             <p className="card-header">
-              <Link
-                to={`/profile/${thought.username}`}
+              <Link 
+                to={loggedIn ?`/profile/${thought.username}` : "/login"}
                 style={{ fontWeight: 700 }}
                 className="text-light"
               >
