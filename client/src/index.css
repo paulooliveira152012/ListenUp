@@ -1,10 +1,10 @@
 :root {
-  --primary: #497573;
-  --secondary: #99f7f2;
-  --tertiary: #b2c2c1;
-  --quatrinary: #cadbda;
-  --light: #e1f5f4;
-  --dark: #6c7575;
+  --primary: #754949;
+  --secondary: #a08f94;
+  --tertiary: #d68e8d;
+  --quatrinary: #e18cc5;
+  --light: #e6a5a5;
+  --dark: #3c3537;
   --error: rgb(228, 46, 1);
   --border-radius: 0.3rem;
   --spacing-one: calc(1rem * 0.25);
@@ -31,7 +31,7 @@ body {
   line-height: 1.5;
   font-size: 20px;
   color: var(--dark);
-  background-color: #f3fffee1;
+  background-color: #e4c6c6;
 }
 
 h1,
@@ -40,14 +40,15 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Karla', sans-serif;
+  font-family: 'Quattrocento', serif;
   font-weight: 700;
   margin: 5px 0;
   line-height: 1.25;
 }
 
 h1 {
-  font-size: 2.25rem;
+  font-size: 60px;
+  font-family: 'Monoton', cursive;
 }
 
 h2 {
@@ -140,17 +141,16 @@ nav a:hover {
 .card {
   margin: 0 0 20px 0;
   border: 3px solid var(--dark);
-  border-radius: var(--border-radius);
   background-color: var(--light);
   color: var(--dark);
 }
 
 .card-header {
-  color: var(--secondary);
+  color: white;
   margin: 0;
   background-color: var(--dark);
+  background: linear-gradient(90deg, rgba(60,53,55,1) 0%, rgba(106, 93, 97, 0.4) 50%, rgba(147, 131, 136, 0) 70%);;
   padding: 0.625rem;
-  border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
 }
 
 .card-body {
@@ -1252,4 +1252,8 @@ nav a:hover {
   .align-center-xl {
     align-items: center;
   }
+}
+
+.opinion-title{
+  padding-left: 10px;
 }
