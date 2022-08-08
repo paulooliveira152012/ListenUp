@@ -9,6 +9,9 @@ const artistSchema = new Schema(
       unique: true,
       trim: true
     },
+    description: {
+      type: String
+    },
     thoughts: [
       {
         type: Schema.Types.ObjectId,
