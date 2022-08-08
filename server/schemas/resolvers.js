@@ -122,7 +122,7 @@ const resolvers = {
       // if (context.artist) {
         const updatedArtist = await Artist.findOneAndUpdate(
           { _id: context.artist._id },
-          { $addToSet: { fans: userId } },
+          { $addToSet: { fans: context.user._id } },
           { new: true }
         ).populate('fans');
 
