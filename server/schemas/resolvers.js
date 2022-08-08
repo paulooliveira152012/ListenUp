@@ -30,12 +30,12 @@ const resolvers = {
     },
     artists: async () => {
       return Artist.find()
-        // .select('-__v')
+        .select('-__v')
         .populate('fans')
     },
     artist: async (parent, { name }) => {
       return Artist.findOne({ name })
-        // .select('-__v ')
+        .select('-__v ')
         .populate('fans')
         // .populate('thoughts');
     },
@@ -119,17 +119,17 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     addFan: async (parent, { artistId, userId }, context) => {
-      // if (context.artist) {
+      if (context.user) {
         const updatedArtist = await Artist.findOneAndUpdate(
-          { _id: context.artist._id },
+          { _id: context.user._id },
           { $addToSet: { fans: userId } },
           { new: true }
         ).populate('fans');
 
         return updatedArtist;
-      // }
+      }
 
-      // throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError('You need to be logged in!');
     }
   },
 };
