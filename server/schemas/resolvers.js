@@ -119,7 +119,7 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     addFan: async (parent, { artistId, userId }, context) => {
-      if (context.artist) {
+      // if (context.artist) {
         const updatedArtist = await Artist.findOneAndUpdate(
           { _id: context.artist._id },
           { $addToSet: { fans: userId } },
@@ -127,9 +127,9 @@ const resolvers = {
         ).populate('fans');
 
         return updatedArtist;
-      }
+      // }
 
-      throw new AuthenticationError('You need to be logged in!');
+      // throw new AuthenticationError('You need to be logged in!');
     }
   },
 };
