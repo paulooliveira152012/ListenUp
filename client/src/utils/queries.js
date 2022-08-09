@@ -18,6 +18,24 @@ export const QUERY_THOUGHTS = gql`
   }
 `;
 
+export const QUERY_ARTISTS = gql`
+query {
+  # get all artists
+  artists {
+    _id
+    name
+    wiki
+    description
+    thoughts{
+      thoughtText
+    }
+    fans{
+      username
+      _id
+    }
+  }
+}`
+
 export const QUERY_THOUGHT = gql`
   query thought($id: ID!) {
     thought(_id: $id) {
