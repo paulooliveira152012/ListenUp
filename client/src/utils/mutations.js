@@ -25,12 +25,14 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_ARTIST = gql`
-  mutation addArtist($name: String!) {
-    addUser(name: $name) {
+  mutation addArtist($name: String!, $wiki: String!, $description: String!) {
+    addArtist(name: $name, wiki: $wiki, description: $description) {
       token
       artist {
         _id
         name
+        wiki
+        description
       }
     }
   }
@@ -84,6 +86,7 @@ export const ADD_FAN = gql`
   mutation addFan($artistId: ID!, $userId: ID!) {
     addFan(artistId: $artistId, userId: $userId) {
       _id
+      name
       fans {
         _id
         username

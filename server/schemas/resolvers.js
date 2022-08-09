@@ -119,7 +119,7 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     addFan: async (parent, { artistId, userId }, context) => {
-      // if (context.artist) {
+      // if (context.user) {
         console.log(context.user, artistId, userId)
         const updatedArtist = await Artist.findOneAndUpdate(
           { _id: artistId },

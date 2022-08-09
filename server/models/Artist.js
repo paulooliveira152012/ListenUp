@@ -14,6 +14,7 @@ const artistSchema = new Schema(
     },
     description: { 
       type: String,
+      required: true,
     },
     thoughts: [
       {
