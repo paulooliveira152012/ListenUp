@@ -31,6 +31,12 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'User'
       }
+    ],
+    likes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Artist'
+      }
     ]
   },
   {

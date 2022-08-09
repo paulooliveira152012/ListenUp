@@ -26,12 +26,14 @@ const resolvers = {
       return User.findOne({ username })
         .select('-__v -password')
         .populate('friends')
-        .populate('thoughts');
+        .populate('thoughts')
+        .populate('likes');
     },
     artists: async () => {
       return Artist.find()
         // .select('-__v')
         .populate('fans')
+        .populate('thoughts')
     },
     artist: async (parent, { name }) => {
       return Artist.findOne({ name })
@@ -135,11 +137,30 @@ const resolvers = {
           { new: true }
           
         ).populate('fans');
-
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: userId },
+          { $push: { likes: updatedArtist._id } },
+          { new: true }
+        )
         return updatedArtist;
       // }
 
       // throw new AuthenticationError('You need to be logged in!');
+    },
+    removeFan: async(parent, {artistId, userId}, context) => {
+      console.log(context.artist)
+        const updatedArtist = await Artist.findOneAndUpdate(
+          { _id: artistId },
+          { $pull: { fans: context.user._id } },
+          { new: true }
+          
+        ).populate('fans');
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: userId },
+          { $pull: { likes: updatedArtist._id } },
+          { new: true }
+        )
+        return updatedArtist;
     }
   },
 };
