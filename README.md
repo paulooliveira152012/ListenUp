@@ -23,7 +23,7 @@
 - While still at client folder run npm install
 - cd .. back to the root directory and cd into the server directory and delete package-lock.json
 - While still at server folder run rpm install
-- Run npm start
+- Run npm run develop (from the root directory)
 
  ## usage
  The application can be used to provide a social environment for users to connect to one another while searching and posting lyrics of their favorite songs, sharing their own lyrics and also reacting to other users' posts; all that through the use of a single page social media react application.
