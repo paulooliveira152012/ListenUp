@@ -26,12 +26,14 @@ const resolvers = {
       return User.findOne({ username })
         .select('-__v -password')
         .populate('friends')
-        .populate('thoughts');
+        .populate('thoughts')
+        .populate('likes');
     },
     artists: async () => {
       return Artist.find()
         // .select('-__v')
         .populate('fans')
+        .populate('thoughts')
     },
     artist: async (parent, { name }) => {
       return Artist.findOne({ name })
@@ -77,15 +79,20 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addThought: async (parent, args, context) => {
+    addThought: async (parent, {thoughtText, artistId}, context) => {
       if (context.user) {
-        const thought = await Thought.create({ ...args, username: context.user.username });
+        const thought = await Thought.create({ thoughtText, username: context.user.username });
 
         await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { thoughts: thought._id } },
           { new: true }
         );
+        await Artist.findOneAndUpdate(
+          { _id: artistId },
+          { $push: { thoughts: thought._id } },
+          { new: true }
+        )
 
         return thought;
       }
@@ -120,18 +127,37 @@ const resolvers = {
     },
     addFan: async (parent, { artistId, userId }, context) => {
       // if (context.user) {
-        console.log(context.user, artistId, userId)
+        console.log(context.artist)
         const updatedArtist = await Artist.findOneAndUpdate(
           { _id: artistId },
           { $addToSet: { fans: context.user._id } },
           { new: true }
           
         ).populate('fans');
-
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: userId },
+          { $push: { likes: updatedArtist._id } },
+          { new: true }
+        )
         return updatedArtist;
       // }
 
       // throw new AuthenticationError('You need to be logged in!');
+    },
+    removeFan: async(parent, {artistId, userId}, context) => {
+      console.log(context.artist)
+        const updatedArtist = await Artist.findOneAndUpdate(
+          { _id: artistId },
+          { $pull: { fans: context.user._id } },
+          { new: true }
+          
+        ).populate('fans');
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: userId },
+          { $pull: { likes: updatedArtist._id } },
+          { new: true }
+        )
+        return updatedArtist;
     }
   },
 };
