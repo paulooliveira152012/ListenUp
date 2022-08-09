@@ -12,14 +12,14 @@ const Home = () => {
   const { data: userData } = useQuery(QUERY_ME_BASIC);
   const thoughts = data?.thoughts || [];
 
-  const loggedIn = Auth.loggedIn();
 
+  const loggedIn = Auth.loggedIn();
   return (
     <main>
       <div className="flex-row justify-space-between">
         {loggedIn && (
         <div className="col-12 mb-3">
-          <Link to="/new-opinion"> <button className="btn col-12 col-md-3" type="submit"> Add Opinion</button></Link>
+          <Link to="/new-opinion"> <button className="btn col-12 col-md-3" type="submit"> Add Opinion or Artist</button></Link>
         </div>
         )}
         <div className={`col-12 mb-3 ${loggedIn && 'col-lg-8'}`}>

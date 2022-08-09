@@ -36,8 +36,8 @@ const resolvers = {
     artist: async (parent, { name }) => {
       return Artist.findOne({ name })
         // .select('-__v ')
+        .populate('thoughts')
         .populate('fans')
-        // .populate('thoughts');
     },
     thoughts: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -77,16 +77,25 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addThought: async (parent, args, context) => {
+    addThought: async (parent, {artistName, thoughtText, createdAt, artistId}, context) => {
       if (context.user) {
-        const thought = await Thought.create({ ...args, username: context.user.username });
+        const thought = await Thought.create({ ...{artistName, thoughtText, createdAt}, username: context.user.username });
 
         await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { thoughts: thought._id } },
           { new: true }
         );
-
+        
+        try {
+          await Artist.findByIdAndUpdate(
+            { _id: artistId },
+            { $push: { thoughts: thought._id } },
+            { new: true }
+          );
+        } catch (e) {
+          console.log('error: ', e)
+        }
         return thought;
       }
 
@@ -120,7 +129,6 @@ const resolvers = {
     },
     addFan: async (parent, { artistId, userId }, context) => {
       // if (context.artist) {
-        console.log(context.user, artistId, userId)
         const updatedArtist = await Artist.findOneAndUpdate(
           { _id: artistId },
           { $addToSet: { fans: context.user._id } },

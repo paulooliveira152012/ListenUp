@@ -31,18 +31,17 @@ const SingleThought = (props) => {
     <div>
       <div className="card mb-3">
         <h4><Link
-                  to={loggedIn ?`/profile/${thought.username}` : "/login"}
+                  to={loggedIn ?`/artist/${thought.artistName}` : "/login"}
                   style={{ fontWeight: 700 }}
                   className="text-light opinion-title"
                 >
-                  Opinions on ARTIST_NAME
+                  Opinions on {thought.artistName}
               </Link>
           </h4>
         <p className="card-header">
           <span style={{ fontWeight: 700 }} className="text-light">
             {thought.username}
-          </span>{' '}
-          thought on {thought.createdAt}
+          </span>{' '}{thought.createdAt}
         </p>
         <div className="card-body">
           <p>{thought.thoughtText}</p>

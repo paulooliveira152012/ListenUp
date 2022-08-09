@@ -4,13 +4,13 @@ import capitalizeFirstLetter from '../../utils/capFirstLetter';
 
 const FriendList = ({ friendCount, username, friends }) => {
   if (!friends || !friends.length) {
-    return <p className="bg-dark text-light p-3">{capitalizeFirstLetter(username)}, make some friends!</p>;
+    return <p className="bg-dark text-light p-3">{capitalizeFirstLetter(username)}, follow some people!</p>;
   }
 
   return (
     <div>
       <h5>
-        {username}'s {friendCount} {friendCount === 1 ? 'friend' : 'friends'}
+        Following {friendCount}
       </h5>
       {friends.map(friend => (
         <button className="btn w-100 display-block mb-2" key={friend._id}>

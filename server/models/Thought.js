@@ -4,6 +4,13 @@ const dateFormat = require('../utils/dateFormat');
 
 const thoughtSchema = new Schema(
   {
+    artistName: {
+      type: String,
+      required: false,
+      default: 'none',
+      minlength: 1,
+      maxlength: 60
+    },
     thoughtText: {
       type: String,
       required: 'You need to leave a thought!',

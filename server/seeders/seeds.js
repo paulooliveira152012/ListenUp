@@ -1,8 +1,9 @@
 // const faker = require('faker');
 const userSeeds = require('./userSeed.json');
 const thoughtSeeds = require('./thoughtSeed.json');
+const artistSeeds = require('./artistSeed.json');
 const db = require('../config/connection');
-const { Thought, User } = require('../models');
+const { Thought, User, Artist } = require('../models');
 
 db.once('open', async () => {
   try {
@@ -10,6 +11,7 @@ db.once('open', async () => {
     await User.deleteMany({});
 
     await User.create(userSeeds);
+    await Artist.create()
 
     for (let i = 0; i < thoughtSeeds.length; i++) {
       const { _id, thoughtAuthor } = await Thought.create(thoughtSeeds[i]);
