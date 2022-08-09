@@ -25,21 +25,21 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_ARTIST = gql`
-  mutation addArtist($name: String!) {
-    addUser(name: $name) {
-      token
-      artist {
-        _id
-        name
-      }
+  mutation addArtist($name: String!, $wiki: String, $description: String) {
+    addArtist(name: $name, wiki: $wiki, description: $description) {
+      _id
+      name
+      wiki
+      description
     }
   }
 `;
 
 export const ADD_THOUGHT = gql`
-  mutation addThought($thoughtText: String!) {
-    addThought(thoughtText: $thoughtText) {
+  mutation addThought($thoughtText: String!, $artistName: String!, $artistId: ID!) {
+    addThought(thoughtText: $thoughtText, artistName: $artistName, artistId: $artistId) {
       _id
+      artistName
       thoughtText
       createdAt
       username

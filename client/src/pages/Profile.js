@@ -1,7 +1,6 @@
 import React from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useParams, Link } from 'react-router-dom';
 
-import ThoughtForm from '../components/ThoughtForm';
 import ThoughtList from '../components/ThoughtList';
 import FriendList from '../components/FriendList';
 
@@ -49,8 +48,6 @@ const Profile = (props) => {
     }
   };
 
-  console.log(Auth.getProfile().data.username, userParam)
-
   return (
     <div>
       <div className="flex-row mb-3">
@@ -58,21 +55,22 @@ const Profile = (props) => {
           Viewing {userParam ? `${capitalizeFirstLetter(user.username)}'s` : 'your'} profile.
         </h2>
         
-        {Auth.getProfile().data.username === userParam ? <button
-        >Add a Post</button>: ''}
-
-        {userParam && (
+        {Auth.getProfile().data.username === userParam ? 
+          <div className="col-12 mb-3">
+            <Link to="/new-opinion"> <button className="btn col-12 col-md-3" type="submit"> Add Opinion or Artist</button></Link>
+          </div>
+          : 
           <button className="btn ml-auto" onClick={handleClick}>
             Add Friend
           </button>
-        )}
+        }
       </div>
 
       <div className="flex-row justify-space-between mb-3">
         <div className="col-12 mb-3 col-lg-8">
           <ThoughtList
             thoughts={user.thoughts}
-            title={`${capitalizeFirstLetter(user.username)}'s thoughts...`}
+            title={`${capitalizeFirstLetter(user.username)}'s opinion...`}
           />
         </div>
 

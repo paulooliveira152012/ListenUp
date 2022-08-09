@@ -14,13 +14,14 @@ const typeDefs = gql`
     _id: ID
     name: String,
     wiki: String,
-    fanCount: Int
+    description: String,
     thoughts: [Thought]
     fans: [User]
   }
 
   type Thought {
     _id: ID
+    artistName: String
     thoughtText: String
     createdAt: String
     username: String
@@ -53,10 +54,10 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addThought(thoughtText: String!): Thought
+    addThought(thoughtText: String!, artistName: String, artistId: ID!): Thought
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User
-    addArtist(name: String!): Artist
+    addArtist(name: String!, wiki: String, description: String): Artist
     addFan(artistId: ID!, userId: ID!): Artist
   }
 `;

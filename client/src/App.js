@@ -18,6 +18,8 @@ import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import NewOpinion from './pages/NewOpinion';
+import Artist from './pages/Artist';
+import ViewArtists from './pages/ViewArtists';
 
 
 const httpLink = createHttpLink({
@@ -70,6 +72,14 @@ function App() {
               <Route 
                 path="/thought/:id" 
                 element={<SingleThought />} 
+              />
+              <Route 
+                path="/artist/:artistName" 
+                element={<Artist />} 
+              />
+              <Route
+                path="/artists"
+                element={<ViewArtists />}
               />
               <Route 
                 path="*" 

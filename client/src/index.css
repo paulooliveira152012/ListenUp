@@ -2,7 +2,7 @@
   --primary: #754949;
   --secondary: #a08f94;
   --tertiary: #d68e8d;
-  --quatrinary: #e18cc5;
+  --quatrinary: #d68e8d;
   --light: #e6a5a5;
   --dark: #3c3537;
   --error: rgb(228, 46, 1);
@@ -1252,4 +1252,9 @@ nav a:hover {
 
 .opinion-title{
   padding-left: 10px;
+}
+
+.opinion-options {
+  display: flex;
+  flex-direction: row;
 }

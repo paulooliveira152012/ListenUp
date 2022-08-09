@@ -7,7 +7,6 @@ import capitalizeFirstLetter from '../../utils/capFirstLetter';
 
 const Header = () => {
   const username = Auth.loggedIn() ? Auth.getProfile().data.username : '';
-  console.log(username)
   const logout = event => {
     event.preventDefault();
     Auth.logout();
@@ -23,6 +22,7 @@ const Header = () => {
         <nav className="text-center">
           {Auth.loggedIn() ? (
             <>
+              <Link to="/artists">View Artists</Link>
               <Link to={`/profile/${username}`}> {capitalizeFirstLetter(username)}'s Profile</Link>
               <a href="/" onClick={logout}>
                 Logout
@@ -30,6 +30,7 @@ const Header = () => {
             </>
           ) : (
             <>
+              <Link to="/artists">View Artists</Link>
               <Link to="/login">Login</Link>
               <Link to="/signup">Signup</Link>
             </>
