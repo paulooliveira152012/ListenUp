@@ -94,6 +94,19 @@ export const ADD_FAN = gql`
   }
 `;
 
+export const REMOVE_FAN = gql`
+  mutation removeFan($artistId: ID!, $userId: ID!) {
+    removeFan(artistId: $artistId, userId: $userId) {
+      _id
+      name
+      fans {
+        _id
+        username
+      }
+    }
+  }
+  `;
+
 export const REMOVE_FRIEND = gql`
   mutation removeFriend($id: ID!) {
     removeFriend(id: $id) {
