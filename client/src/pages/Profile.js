@@ -3,6 +3,7 @@ import { Navigate, useParams, Link } from 'react-router-dom';
 
 import ThoughtList from '../components/ThoughtList';
 import FriendList from '../components/FriendList';
+import LikeList from '../components/LikeList';
 
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
@@ -19,7 +20,7 @@ const Profile = (props) => {
   });
 
   const user = data?.me || data?.user || {};
-
+  console.log(user);
   // navigate to personal profile page if username is yours
   // if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
   //   return <Navigate to="/profile:username" />;
@@ -47,7 +48,7 @@ const Profile = (props) => {
       console.error(e);
     }
   };
-
+  console.log()
   return (
     <div>
       <div className="flex-row mb-3">
@@ -79,6 +80,12 @@ const Profile = (props) => {
             username={capitalizeFirstLetter(user.username)}
             friendCount={user.friendCount}
             friends={user.friends}
+          />
+        </div>
+        <div className="col-12 col-lg-3 mb-3">
+          <LikeList
+            username={capitalizeFirstLetter(user.username)}
+            artists={user.likes}
           />
         </div>
       </div>
