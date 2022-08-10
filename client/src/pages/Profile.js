@@ -81,8 +81,6 @@ const Profile = (props) => {
             friendCount={user.friendCount}
             friends={user.friends}
           />
-        </div>
-        <div className="col-12 col-lg-3 mb-3">
           <LikeList
             username={capitalizeFirstLetter(user.username)}
             artists={user.likes}
