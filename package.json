@@ -8,7 +8,6 @@
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build"
-
   },
   "repository": {
     "type": "git",
@@ -19,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/paulooliveira152012/ListenUp/issues"
   },
-  "homepage": "https://github.com/paulooliveira152012/ListenUp#readme"
+  "homepage": "https://github.com/paulooliveira152012/ListenUp#readme",
+  "dependencies": {
+    "concurrently": "^7.3.0"
+  }
 }

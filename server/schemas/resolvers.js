@@ -131,6 +131,8 @@ const resolvers = {
     },
     addFan: async (parent, { artistId, userId }, context) => {
       // if (context.artist) {
+        console.log(context)
+        // console.log(context.user)
         const updatedArtist = await Artist.findOneAndUpdate(
           { _id: artistId },
           { $addToSet: { fans: context.user._id } },
@@ -139,9 +141,11 @@ const resolvers = {
         ).populate('fans');
         const updatedUser = await User.findOneAndUpdate(
           { _id: userId },
-          { $push: { likes: updatedArtist._id } },
+          { $addToSet: { likes: updatedArtist._id } },
           { new: true }
         )
+        console.log(updatedArtist);
+        // console.log(user)
         return updatedArtist;
       // }
 
