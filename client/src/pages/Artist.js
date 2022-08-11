@@ -54,12 +54,16 @@ const Artist = () => {
   return (
     <div>
       <h3>{data.artist.name}</h3>
-      <button className="btn ml-auto" onClick={handleClick}>
-            Like Artist
-          </button>
-          <button className="btn ml-auto" onClick={handleClick2}>
-            Unlike
-          </button>
+      <button 
+        className="btn ml-auto" 
+        onClick={handleClick}
+        style={{margin:"10px"}}
+      >
+        Like Artist
+      </button>
+      <button className="btn ml-auto" onClick={handleClick2}>
+        Unlike
+      </button>
       <p>{data.artist.description}</p>
       {data &&
         data.artist.thoughts.map(thought => (
